@@ -216,3 +216,6 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Embeddings gerados (reproduzíveis via etapa2_embeddings.py)
+dados/embeddings.npy
