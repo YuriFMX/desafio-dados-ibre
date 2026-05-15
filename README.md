@@ -90,7 +90,7 @@ Argumentos:
 **Pipeline aplicado a cada texto bruto** (em ordem):
 
 1. **Remoção de tags HTML** com `BeautifulSoup` + parser `lxml`. O método `.get_text(separator=" ")` já decodifica entidades HTML simultaneamente.
-2. **Decodificação adicional** com `html.unescape`** para entidades remanescentes (`&agrave;`, `&ccedil;`, etc.).
+2. **Decodificação adicional** com `html.unescape` para entidades remanescentes (`&agrave;`, `&ccedil;`, etc.).
 3. **Normalização Unicode** com `unicodedata.normalize("NFKC", ...)` para garantir forma canônica dos caracteres acentuados.
 4. **Remoção de metadados embutidos** (timestamps de publicação, fontes no cabeçalho) via 4 regex aplicadas em ordem do mais específico para o mais genérico:
    - `Publicado em: DD/MM/YYYY [às HHhMM]`
@@ -100,7 +100,7 @@ Argumentos:
 5. **Remoção de espaços antes de pontuação** — efeito colateral do separador do BeautifulSoup, que insere espaços em locais onde havia tags inline (ex.: `pelo <strong>IBGE</strong>.` → `pelo IBGE .`).
 6. **Colapso final de whitespace** (`\s+` → ` `) e `strip()`.
 
-**Decisões deliberadas de *não* fazer**:
+**Decisões deliberadas de não fazer**:
 
 - **Não fazer lowercasing**: modelos de embedding modernos são case-sensitive e preservam morfologia. Lowercasing perde sinal (ex.: "FGV IBRE" vs "fgv ibre").
 - **Não remover acentos**: pelas mesmas razões; tokenizadores modernos lidam bem com acentos.
